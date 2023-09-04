@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
+import HomePage from '../Homepage/Homepage';
 import NavBar from '../../components/NavBar/NavBar';
 
 export default function App() {
@@ -15,11 +16,13 @@ export default function App() {
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
+              <Route path="/dashboard" element={<HomePage />} />
+            <AuthPage setUser={setUser} />
 
             </Routes>
           </>
           :
-          <AuthPage setUser={setUser} />
+          <HomePage />
       }
     </main>
   );

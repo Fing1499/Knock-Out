@@ -18,6 +18,7 @@ const groupSchema = new Schema({
     user: { type: String },
     stillPlaying: { type: Boolean, default: true }
   }],
+  league: { type: String },
   history: { type: [winlossHistorySchema] }
 })
 
