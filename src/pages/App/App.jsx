@@ -5,6 +5,8 @@ import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
 import HomePage from '../Homepage/Homepage';
 import NavBar from '../../components/NavBar/NavBar';
+import GroupPage from '../Groups/GroupPage/GroupPage';
+import CreateGroupPage from '../Groups/CreateGroupPage/CreateGroupPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -17,12 +19,12 @@ export default function App() {
             <Routes>
               {/* Route components in here */}
               <Route path="/dashboard" element={<HomePage />} />
-            <AuthPage setUser={setUser} />
-
+              <Route path="/groups" element={<GroupPage />} />
+              <Route path="/groups/create-group" element={<CreateGroupPage />} />
             </Routes>
           </>
           :
-          <HomePage />
+          <AuthPage setUser={setUser} />
       }
     </main>
   );

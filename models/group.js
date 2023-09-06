@@ -22,8 +22,4 @@ const groupSchema = new Schema({
   history: { type: [winlossHistorySchema] }
 })
 
-module.exports = {
-  Group: mongoose.model('Group', groupSchema),
-  WinLoss: mongoose.model('WinLoss', winlossHistorySchema),
-  WeeklySelection: mongoose.model('WeeklySelection', weeklySelectionSchema)
-};
+module.exports = mongoose.model('Group', groupSchema);
