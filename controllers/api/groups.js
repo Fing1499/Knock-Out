@@ -1,4 +1,3 @@
-const User = require('../../models/user');
 const Group = require('../../models/group')
 
 const generateKey = require('generate-unique-id');
