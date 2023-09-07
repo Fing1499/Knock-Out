@@ -15,13 +15,15 @@ async function joinGroup(req, res) {
   try {
     const user = await User.findById(req.user._id)
     const group = await Group.findOne({ invite_key: req.body.invite_key })
-    if (group) {
+    if (group && !group.users.some(u => u.user === req.user._id)) {
       user.groups.push(group._id);
       group.users.push({ user: req.user._id });
       await group.save()
       await user.save()
       res.json(true)
-    } else {
+    } else if (!group) {
+      res.json(false)
+    } else if (group.users.some(u => u.user === req.user._id)) {
       res.json(false)
     }
   } catch (err) {
