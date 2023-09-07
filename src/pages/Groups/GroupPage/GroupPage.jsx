@@ -1,3 +1,7 @@
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip';
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import * as GROUPAPI from '../../../utilities/groups-api'
@@ -49,9 +53,21 @@ export default function GroupPage() {
     <>
       <h1>group page</h1>
       <GroupSearch />
-      <Link to='create-group'>Create Group</Link>
+      <Link to='create-group'>
+      <Button variant="outlined" sx={{ color: '#D3D9E1' }} endIcon={<AddIcon />}>
+        Create Group
+      </Button>
+      </Link>
       <h1>Your Groups</h1>
       {renderGroups()}
+      <Divider sx={{ 
+        "&::before, &::after": {
+          borderColor: "#D3D9E1",
+        }, 
+      }}>
+        <Chip label="How It Works" sx={{ bgcolor: '#13222F' }} />
+      </Divider>
+      <p>explain how it works here</p>
     </>
   )
 }

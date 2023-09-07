@@ -1,0 +1,12 @@
+.fixture-card-section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(100vh / 70)
+}
+
+.group-search-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2vmin; /*! change later */
+}

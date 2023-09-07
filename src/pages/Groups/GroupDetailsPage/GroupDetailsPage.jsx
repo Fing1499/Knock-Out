@@ -1,3 +1,4 @@
+import '../Group.css'
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import * as FOOTBALLAPI from '../../../utilities/football-api'
@@ -44,9 +45,10 @@ export default function GroupDetailsPage() {
       <h1>{group.name}</h1>
       <h3>{group.invite_key} add copy option here</h3>
       <h3>{CODES.leagueCodes[group.league]}</h3>
-
       <button onClick={handleTeams}>show Teams</button>
-      {renderFixtures()}
+      <section className='fixture-card-section'>
+        {renderFixtures()}
+      </section>
       <button>confirm selection</button>
     </>
   )
