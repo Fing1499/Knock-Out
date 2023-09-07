@@ -13,7 +13,7 @@ const winlossHistorySchema = new Schema({
 
 const groupSchema = new Schema({
   name: { type: String, required: true },
-  invite_key: { type: String, required: true, unique: true },
+  invite_key: { type: String, required: true },
   users: [{
     user: { type: String },
     stillPlaying: { type: Boolean, default: true }

@@ -6,9 +6,28 @@ const generateKey = require('generate-unique-id');
 
 module.exports = {
   createGroup,
-  getGroups
+  getGroups,
+  joinGroup
 };
 
+//todo: make sure users cant join twice
+async function joinGroup(req, res) {
+  try {
+    const user = await User.findById(req.user._id)
+    const group = await Group.findOne({ invite_key: req.body.invite_key })
+    if (group) {
+      user.groups.push(group._id);
+      group.users.push({ user: req.user._id });
+      await group.save()
+      await user.save()
+      res.json(true)
+    } else {
+      res.json(false)
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 async function getGroups(req, res) {
   try {

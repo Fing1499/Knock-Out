@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as FOOTBALLAPI from '../../../utilities/football-api'
 import * as CODES from '../../../utilities/football-api-codes'
 import FixtureListitemMain from '../../../components/FixtureItems/FixtureItemMain';

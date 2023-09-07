@@ -7,5 +7,7 @@ router.post('/create-group', groupsCTRL.createGroup)
 
 router.get('/get-groups', groupsCTRL.getGroups);
 
+router.post('/join-group', groupsCTRL.joinGroup)
+
 
 module.exports = router;

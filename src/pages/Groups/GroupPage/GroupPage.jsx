@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import * as GROUPAPI from '../../../utilities/groups-api'
 import * as CODES from '../../../utilities/football-api-codes'
-
+import GroupSearch from "../../../components/GroupSearch/GroupSearch"
 
 
 export default function GroupPage() {
@@ -48,6 +48,7 @@ export default function GroupPage() {
   return (
     <>
       <h1>group page</h1>
+      <GroupSearch />
       <Link to='create-group'>Create Group</Link>
       <h1>Your Groups</h1>
       {renderGroups()}
