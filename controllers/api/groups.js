@@ -4,9 +4,18 @@ const generateKey = require('generate-unique-id');
 
 
 module.exports = {
-  createGroup
+  createGroup,
+  getGroups
 };
 
+
+async function getGroups(req, res) {
+  try {
+    
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 
 async function createGroup(req, res) {

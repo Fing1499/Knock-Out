@@ -5,5 +5,7 @@ const groupsCTRL = require('../../controllers/api/groups');
 
 router.post('/create-group', groupsCTRL.createGroup)
 
+router.get('/get-groups', groupsCTRL.getGroups);
+
 
 module.exports = router;

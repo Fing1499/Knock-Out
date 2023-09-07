@@ -16,7 +16,12 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  followed_teams: { type: Array },
+  followed_leagues: { type: Array },
+  followed_users: { type: Array },
+  groups: { type: Array },
+  picture: { type: String }
 }, {
   timestamps: true,
   toJSON: {
