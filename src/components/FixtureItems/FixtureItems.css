@@ -1,0 +1,19 @@
+.fixture-card {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.teams-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.team-logo {
+  height: calc(100vw / 10);
+  width: calc(100vw / 10);
+}

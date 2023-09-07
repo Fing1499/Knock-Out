@@ -1,4 +1,5 @@
 const Group = require('../../models/group')
+const User = require('../../models/user')
 
 const generateKey = require('generate-unique-id');
 
@@ -11,7 +12,9 @@ module.exports = {
 
 async function getGroups(req, res) {
   try {
-    
+    const user = await User.findById(req.user._id)
+    const groups = user.groups
+    res.json(groups)
   } catch (err) {
     console.log(err)
   }
@@ -46,8 +49,14 @@ async function createGroup(req, res) {
     // Save the new group to the database
     await newGroup.save();
 
-    console.log(req.body);
+    //add new group to user model
+    //TODO not sure if this works or not yet
+    const user = await User.findById(req.user._id)
+    user.groups.push(newGroup)
+    await user.save();
 
+    console.log(req.body);
+    console.log(user.groups)
     // Send a response with both the success message and the newGroup data
     res.json({ message: 'Group Created Successfully', group: newGroup });
   } catch (err) {

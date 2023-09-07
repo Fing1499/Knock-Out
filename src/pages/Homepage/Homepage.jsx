@@ -1,3 +1,4 @@
+import FixtureListitemMain from '../../components/FixtureItems/FixtureItemMain';
 import * as Football from '../../utilities/football-api';
 import { useState } from 'react';
 
@@ -23,10 +24,7 @@ export default function HomePage() {
       
     const fixturesData = data.response
     return fixturesData.map((fixture, idx) => (
-      <div key={idx}>
-        <h1>{fixture.teams.home.name} vs {fixture.teams.away.name}</h1>
-        <p>{fixture.fixture.date}</p>
-      </div>
+      <FixtureListitemMain key={idx} info={fixture} />
     ));
     }
   }

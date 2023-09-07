@@ -7,7 +7,7 @@ export default function CreateGroupPage() {
 
   const [groupParams, setGroupParams] = useState({
     'name': '',
-    'league': '',
+    'league': 39,
     'players': ''
   })
 
@@ -34,11 +34,11 @@ export default function CreateGroupPage() {
         <input type="text" name="name" onChange={handleChange} />
         <label>Choose a League</label>
         <select name="league" onChange={handleChange}>
-          <option value="PremierLeague">Premier League</option>
-          <option value="LaLiga">La Liga</option>
-          <option value="Ligue1">Ligue 1</option>
-          <option value="SerieA">Serie A</option>
-          <option value="Bundesliga">Bunesliga</option>
+          <option name="league" value={39}>Premier League</option>
+          <option name="league" value={140}>La Liga</option>
+          <option name="league" value={61}>Ligue 1</option>
+          <option name="league" value={135}>Serie A</option>
+          <option name="league" value={78}>Bunesliga</option>
         </select>
         <label>Add Friends</label>
         <label>Insert player name here</label>
