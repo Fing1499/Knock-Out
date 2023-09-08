@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import * as FOOTBALLAPI from '../../../utilities/football-api'
 import * as CODES from '../../../utilities/football-api-codes'
-import FixtureListitemMain from '../../../components/FixtureItems/FixtureItemMain';
+import FixtureListitemSelection from '../../../components/FixtureItems/FixtureItemsSelection';
 
 export default function GroupDetailsPage() {
   
@@ -32,7 +32,7 @@ export default function GroupDetailsPage() {
       )
     }
     return availableChoices.response.map((choice, idx) => (
-      <FixtureListitemMain key={idx} info={choice} />
+      <FixtureListitemSelection key={idx} info={choice} invite_key={group.invite_key} />
     ))
   }
 

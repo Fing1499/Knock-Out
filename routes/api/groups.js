@@ -9,5 +9,7 @@ router.get('/get-groups', groupsCTRL.getGroups);
 
 router.post('/join-group', groupsCTRL.joinGroup)
 
+router.post('/make-selection', groupsCTRL.makeSelection)
+
 
 module.exports = router;

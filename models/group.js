@@ -1,15 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const weeklySelectionSchema = new Schema({
-  team: { type: String, required: true },
-  result: { type: String, required: true }
-})
-
-const winlossHistorySchema = new Schema({
-  user: { type: String },
-  weeklySelections: { type: [weeklySelectionSchema] }
-})
 
 const groupSchema = new Schema({
   name: { type: String, required: true },
@@ -19,7 +10,15 @@ const groupSchema = new Schema({
     stillPlaying: { type: Boolean, default: true }
   }],
   league: { type: String },
-  history: { type: [winlossHistorySchema] }
+  history: [{
+    week: { type: Number, default: 0 },
+    player_info: [{
+      user: { type: String, required: true },
+      team: { type: String, required: true },
+      result: { type: String, required: true },
+      fixture_id: { type: String, required: true }
+    }]
+  }]
 })
 
 module.exports = mongoose.model('Group', groupSchema);

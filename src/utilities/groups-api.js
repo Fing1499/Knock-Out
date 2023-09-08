@@ -13,3 +13,7 @@ export async function getGroups() {
 export async function joinGroup(searchKey) {
   return sendRequest(`${BASE_URL}/join-group`, 'POST', searchKey)
 }
+
+export async function makeSelection(selection) {
+  return sendRequest(`${BASE_URL}/make-selection`, 'POST', selection)
+}
