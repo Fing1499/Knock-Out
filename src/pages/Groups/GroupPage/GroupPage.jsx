@@ -2,6 +2,10 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import * as GROUPAPI from '../../../utilities/groups-api'
@@ -36,11 +40,30 @@ export default function GroupPage() {
       <div>
         {groups.map((group) => (
           <div key={group._id}>
-            <Link to={`group/${group._id}`} state={{ group: group }}>
-              <h1>{group.name}</h1>
-              <h3>{CODES.leagueCodes[group.league]}</h3>
-              <h2>{group.users.length}</h2>
-            </Link>
+              <Card variant="outlined" sx={{ display: 'inline-block', bgcolor: '#13222F', outline: '.1vmin solid #D3D9E1', width: '70%' }}>
+                <CardContent>
+                    {group.users.length > 1 ? 
+                      <Typography sx={{ fontSize: 14 }} color="#D3D9E1" gutterBottom>
+                        {group.users.length} Players
+                      </Typography>
+                    :
+                      <Typography sx={{ fontSize: 14 }} color="#D3D9E1" gutterBottom>
+                        {group.users.length} Player
+                      </Typography>
+                    }
+                  <Typography variant="h5" component="div">
+                    {group.name}
+                  </Typography>
+                  <Typography sx={{ mb: 1.5 }} color="D3D9E1">
+                    {CODES.leagueCodes[group.league]}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Link to={`group/${group._id}`} state={{ group: group }}>
+                    <Button size="small" sx={{ bgcolor: '#7CB4B8', color: '#13222F', textDecoration: 'none' }}>View Group</Button>
+                  </Link>
+                </CardActions>
+              </Card>
           </div>
         ))}
       </div>
@@ -65,7 +88,7 @@ export default function GroupPage() {
           borderColor: "#D3D9E1",
         }, 
       }}>
-        <Chip label="How It Works" sx={{ bgcolor: '#13222F' }} />
+        <Chip label="How It Works" sx={{ bgcolor: '#13222F', outline: '.1vmin solid #D3D9E1' }} />
       </Divider>
       <p>explain how it works here</p>
     </>
