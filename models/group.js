@@ -12,11 +12,12 @@ const groupSchema = new Schema({
   league: { type: String },
   history: [{
     week: { type: Number, default: 0 },
+    date: { type: Date },
     player_info: [{
-      user: { type: String, required: true },
-      team: { type: String, required: true },
-      result: { type: String, required: true },
-      fixture_id: { type: String, required: true }
+      user: { type: String },
+      team: { type: String },
+      result: { type: String },
+      fixture_id: { type: String }
     }]
   }]
 })

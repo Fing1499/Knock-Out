@@ -1,7 +1,7 @@
 import './FixtureItems.css'
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as GROUPAPI from '../../utilities/groups-api'
 
 export default function FixtureListitemSelection({ info, invite_key }) {
@@ -22,29 +22,33 @@ export default function FixtureListitemSelection({ info, invite_key }) {
     invite_key: invite_key
   })
 
+
   async function handleChange(value) {
+    try {
     if (value === 'HOME') {
       setSelection({
         team: info.teams.home.name,
         id: info.fixture.id,
-        result: value 
+        result: value,
+        invite_key: invite_key
       })
     }
     if (value === 'DRAW') {
       setSelection({
         team: 'DRAW',
         id: info.fixture.id,
-        result: value 
+        result: value,
+        invite_key: invite_key
       })
     }
     if (value === 'AWAY') {
       setSelection({
         team: info.teams.away.name,
         id: info.fixture.id,
-        result: value
+        result: value,
+        invite_key: invite_key
       })
     }
-    try {
       const response = await GROUPAPI.makeSelection(selection)
     } catch (error) {
       

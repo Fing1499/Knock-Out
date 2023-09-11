@@ -13,13 +13,39 @@ module.exports = {
 
 async function makeSelection(req, res) {
   try {
+
     const user = await User.findById(req.user._id)
     const group = await Group.findOne({ invite_key: req.body.invite_key })
-    group.history.push({
-      week: group.history.length,
-    })
-    
+    const playerInfo = {
+      user: user._id,
+      team: req.body.team,
+      result: req.body.result,
+      fixture_id: req.body.id
+    }
+    console.log(req.body)
 
+    const weeksPast = getWeeksPast(group.history[group.history.length - 1].date)
+    
+    if (group.history[group.history.length - 1].week !== weeksPast) {
+      //!new history array item
+
+      const history = {
+        week: weeksPast,
+        date: new Date(),
+        player_info: playerInfo
+      }
+
+      group.history.push(history)
+      console.log('IF')
+    } else {
+      //? push into exisiting historyb playerinfo
+      console.log('ELSE')
+      console.log(playerInfo, 'TWO')
+      group.history[group.history.length - 1].player_info.push(playerInfo)
+    }
+
+    await group.save()
+    res.json('group added')
   } catch (err) {
     console.log(err)
   }
@@ -77,9 +103,16 @@ async function createGroup(req, res) {
     // Create a new Group instance with the required properties
     const newGroup = new Group({
       name: req.body.name,
-      league: req.body.league,
+      invite_key: invKey,
       users: [{ user: req.user._id }],
-      invite_key: invKey
+      league: req.body.league,
+      history: [{
+        week: 1,
+        date: new Date(),
+        player_info: [{
+
+        }]
+      }]
     });
 
     // Save the new group to the database
@@ -98,4 +131,18 @@ async function createGroup(req, res) {
   } catch (err) {
     console.log(err)
   }
+}
+
+
+//! ============ HELPER FUNCTIONS ==================== !//
+
+function getWeeksPast(previousDate) {
+
+  const currentDate = new Date();
+  
+  const timeDifference = currentDate - previousDate;
+  
+  const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+  
+  return Math.floor(daysDifference / 7);
 }
